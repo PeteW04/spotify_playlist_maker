@@ -1,5 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
+import SearchBar from './components/SearchBar';
+import SearchResults from './components/SearchResults'
+import Playlist from './components/Playlist';
 
 function App() {
   return (
@@ -18,7 +21,12 @@ function App() {
           Learn React
         </a>
       </header>
+      <SearchBar></SearchBar>
+      <SearchResults></SearchResults>
+      <Playlist></Playlist>
     </div>
+
+
   );
 }
 

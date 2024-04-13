@@ -14,7 +14,7 @@ function SearchBar() {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <input type="text" name="searchText" value={searchText} onChange={handleChange} placeholder='Search for Songs' >Search for Songs</input>
+                <input type="text" name="searchText" value={searchText} onChange={handleChange} placeholder='Search for Songs' />
             </form>
         </div>
     );

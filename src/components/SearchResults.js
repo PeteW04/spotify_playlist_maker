@@ -1,11 +1,12 @@
 import React from 'react';
 import TrackList from './TrackList';
 
-function SearchResults() {
+function SearchResults({ tracks, onAdd }) {
+
     return (
         <div>
             <h2>Results</h2>
-            <TrackList></TrackList>
+            <TrackList tracks={tracks} onAdd={onAdd} ></TrackList>
         </div>
     );
 }

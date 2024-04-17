@@ -1,13 +1,8 @@
 import React from 'react';
 
-function SaveToSpotify() {
-    const handleSubmit = () => {
-
-    };
+function SaveToSpotify({ onSave }) {
     return (
-        <form onSubmit={handleSubmit}>
-            <button type="submit">Save to Spotify</button>
-        </form>
+        <button id="saveToSpotify" onClick={onSave}>Save to Spotify</button>
     );
 }
 

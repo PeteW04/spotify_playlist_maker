@@ -1,11 +1,13 @@
 import React from 'react';
 
-function Track({ track_title, artist }) {
+function Track({ track, track_title, artist, onAdd, onRemove }) {
+
     return (
         <div>
             <h4 className='trackTitle'>{track_title}</h4>
             <p className='artist'>{artist}</p>
-            <button className='addToPlaylist'>+</button>
+            {onAdd && <button onClick={() => onAdd(track)}>Add</button>}
+            {onRemove && <button onClick={() => onRemove(track.id)}>Remove</button>}
         </div>
     );
 }

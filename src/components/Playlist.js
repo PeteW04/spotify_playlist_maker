@@ -1,19 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import TrackList from './TrackList';
 import SaveToSpotify from './SaveToSpotify';
+import PlaylistTitle from './PlaylistTitle';
 
-function Playlist() {
-    const [playlistTitle, setPlaylistTitle] = useState("Playlist Title");
-
-    const handleChange = (e) => {
-        setPlaylistTitle(e.target.value);
-    };
-
+function Playlist({ tracks, onSave, onRemove }) {
     return (
         <div>
-            <h2 name="playlist_title" value={playlistTitle} onChange={handleChange}></h2>
-            <TrackList></TrackList>
-            <SaveToSpotify></SaveToSpotify>
+            <PlaylistTitle></PlaylistTitle>
+            <TrackList tracks={tracks} onRemove={onRemove}></TrackList>
+            <SaveToSpotify onSave={onSave}></SaveToSpotify>
         </div>
     );
 }

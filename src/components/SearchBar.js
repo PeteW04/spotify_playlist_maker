@@ -1,19 +1,15 @@
 import React, { useState } from 'react';
 
-function SearchBar() {
+function SearchBar({ onSubmit }) {
     const [searchText, setSearchText] = useState("");
 
     const handleChange = (event) => {
         setSearchText(event.target.value);
     };
 
-    const handleSubmit = () => {
-
-    };
-
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={onSubmit}>
                 <input type="text" name="searchText" value={searchText} onChange={handleChange} placeholder='Search for Songs' />
             </form>
         </div>

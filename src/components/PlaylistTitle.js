@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const PlaylistTitle = () => {
-    const [playlistTitle, setPlaylistTitle] = useState("Playlist Title");
+const PlaylistTitle = ({ playlistTitle, setPlaylistTitle }) => {
     const handleTitleChange = (event) => {
         setPlaylistTitle(event.target.value);
     };

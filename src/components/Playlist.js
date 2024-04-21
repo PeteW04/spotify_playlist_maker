@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import TrackList from './TrackList';
 import SaveToSpotify from './SaveToSpotify';
 import PlaylistTitle from './PlaylistTitle';
-import getSpotifyAccessToken from './SpotifyKey';
+import { refreshToken } from '../auth';
 
 function Playlist({ tracks, onRemove, accessToken }) {
     const [playlistTitle, setPlaylistTitle] = useState("Playlist Title");
     function onSave() {
         const uris = tracks.map(track => track.uri);
+        if (!accessToken) {
+            refreshToken();
+        }
 
         fetch("https://api.spotify.com/v1/me", {
             method: "GET",

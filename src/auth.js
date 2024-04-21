@@ -45,6 +45,27 @@ async function setupAuth() {
     window.location.href = authUrl.toString();
 }
 
+const refreshToken = async () => {
+    const refresh_token = localStorage.getItem("refresh_token");
+    fetch("https://accounts.spotify.com/api/token", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+            client_id: clientId,
+            grant_type: "refresh_token",
+            refresh_token,
+        })
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            localStorage.setItem("refresh_token", data.refresh_token);
+            localStorage.setItem("access_token", data.access_token);
+        })
+}
+
 const getToken = async (code) => {
     const codeVerifier = localStorage.getItem('code_verifier');
     const url = 'https://accounts.spotify.com/api/token';
@@ -73,7 +94,8 @@ const getToken = async (code) => {
     }
 
     localStorage.setItem('access_token', data.access_token);
+    localStorage.setItem('refresh_token', data.refresh_token);
     return data.access_token;
 };
 
-export { setupAuth, getToken };
+export { setupAuth, getToken, refreshToken };

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import getSpotifyAccessToken from './SpotifyKey';
+import { refreshToken } from '../auth';
 
 function SearchBar({ setTracks, accessToken }) {
     const [searchText, setSearchText] = useState("");
@@ -8,42 +8,11 @@ function SearchBar({ setTracks, accessToken }) {
         setSearchText(event.target.value);
     };
 
-    // useEffect(() => {
-    //     if (!searchText) return;
-    //     getSpotifyAccessToken().then(token => {
-    //         const url = new URL("https://api.spotify.com/v1/search");
-    //         url.search = new URLSearchParams({
-    //             q: searchText,
-    //             type: "track",
-    //             limit: 10
-    //         }).toString();
-    //         console.log(url);
-
-    //         fetch(url, {
-    //             method: "GET",
-    //             headers: {
-    //                 "Authorization": `Bearer ${token}`,
-    //             }
-    //         })
-    //             .then(response => {
-    //                 if (!response.ok) {
-    //                     throw new Error('Failed to fetch search results, status: ' + response.status);
-    //                 }
-    //                 return response.json();
-    //             })
-    //             .then(data => {
-    //                 console.log(data);
-    //                 setTracks(data.tracks.items);
-    //             })
-    //             .catch(error => console.error('Error:', error));
-    //     })
-    //         .catch(error => {
-    //             console.error('Error fetching access token:', error);
-    //         });
-    // }, [searchText, setTracks])
     useEffect(() => {
         if (!searchText) return;
-
+        if (!accessToken) {
+            refreshToken();
+        }
         const url = new URL("https://api.spotify.com/v1/search");
         url.search = new URLSearchParams({
             q: searchText,

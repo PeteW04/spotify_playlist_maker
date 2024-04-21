@@ -70,7 +70,7 @@ function App() {
       <SearchBar setTracks={setTracks} accessToken={accessToken} />
       <SearchResults onAdd={addToPlaylist} tracks={tracks} />
       <Playlist onRemove={removeFromPlaylist} tracks={playlist} accessToken={accessToken} />
-      <button id="logout" onClick={() => { localStorage.removeItem("access_token"); }}>LOGOUT</button>
+      <button id="logout" onClick={() => { localStorage.removeItem("access_token"); localStorage.removeItem("access_token"); window.location.reload(); }}>LOGOUT</button>
     </div>
   );
 }

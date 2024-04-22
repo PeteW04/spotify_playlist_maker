@@ -62,15 +62,30 @@ function App() {
   };
 
   if (!accessToken) {
-    return <Login />;
+    return (
+      <div className="App">
+        <div className="flex flex-col bg-stone-900 min-h-screen">
+          <Login />
+        </div>
+      </div>
+    );
   }
 
   return (
     <div className="App">
-      <SearchBar setTracks={setTracks} accessToken={accessToken} />
-      <SearchResults onAdd={addToPlaylist} tracks={tracks} />
-      <Playlist onRemove={removeFromPlaylist} tracks={playlist} accessToken={accessToken} />
-      <button id="logout" onClick={() => { localStorage.removeItem("access_token"); localStorage.removeItem("access_token"); window.location.reload(); }}>LOGOUT</button>
+      <div className="flex flex-col bg-stone-900 min-h-screen">
+        <div className='flex justify-between items-center'>
+          <h1 className="text-5xl flex-grow text-slate-100 font-bold leading-snug truncate mb-1 sm:mb-0">Playlist Builder for Spotify</h1>
+          <button className="bg-green-900 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-3 rounded" id="logout" onClick={() => { localStorage.removeItem("access_token"); localStorage.removeItem("access_token"); window.location.reload(); }}>LOGOUT</button>
+        </div>
+        <div className="container mx-auto">
+          <SearchBar setTracks={setTracks} accessToken={accessToken} />
+        </div>
+        <div className="mb-14 grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">
+          <SearchResults onAdd={addToPlaylist} tracks={tracks} />
+          <Playlist onRemove={removeFromPlaylist} tracks={playlist} accessToken={accessToken} />
+        </div>
+      </div>
     </div>
   );
 }

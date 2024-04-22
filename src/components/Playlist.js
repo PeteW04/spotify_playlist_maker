@@ -47,11 +47,11 @@ function Playlist({ tracks, onRemove, accessToken }) {
             )
             .catch(error => console.error("Error: ", error))
 
-
+        window.location.reload();
     }
 
     return (
-        <div>
+        <div className="rounded-lg mb-auto1">
             <PlaylistTitle playlistTitle={playlistTitle} setPlaylistTitle={setPlaylistTitle}></PlaylistTitle>
             <TrackList tracks={tracks} onRemove={onRemove}></TrackList>
             <SaveToSpotify onSave={onSave}></SaveToSpotify>
